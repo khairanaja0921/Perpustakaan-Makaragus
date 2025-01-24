@@ -1,0 +1,217 @@
+#nav1 {
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+}
+
+#footer {
+    width: 100%;
+    height: 100px;
+    place-content: center;
+    background-color: rgb(29, 169, 132);
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    display: flex;
+}
+
+#faceb {
+    font-size: 35px;
+    color: rgb(29, 169, 132);
+    font-weight: bold;
+    padding: 20px;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+#insta {
+    font-size: 35px;
+    color: rgb(29, 169, 132);
+    font-weight: bold;
+    padding: 20px;
+    line-height: 50px;
+    cursor: pointer;
+}
+#whats {
+    font-size: 35px;
+    color: rgb(29, 169, 132);
+    font-weight: bold;
+    padding: 20px;
+    line-height: 50px;
+    cursor: pointer;
+}
+#yutub {
+    font-size: 35px;
+    color: rgb(29, 169, 132);
+    font-weight: bold;
+    padding: 20px;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+#foto1 {
+    height: 50vh;
+}
+
+#image1 {
+    height: 100vh;
+}
+
+#contentt {
+    margin-top: 650px;
+}
+#boot {
+    height: 236.5px;
+}
+
+#perj {
+    margin-top: 100px;
+}
+
+#pesan {
+    margin-top: 100px;
+}
+
+#aga {
+    color: rgb(197, 74, 74);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 50px;
+}
+
+#kh {
+    width: 40px;
+    line-height: 50px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-left: 200px;
+    margin-top: 10px;
+}
+
+#logo {
+    width: 70px;
+}
+
+#navbar1 {
+    height: 70px;
+}
+
+#kh {
+    width: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-position: 0%;
+    background: url("bg\ \ l3.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 750px;
+    background: rgb(255, 255, 255, 0.1);
+    border: 2px solid rgb(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    border-radius: 10px;
+    color: aliceblue;
+    padding: 40px 35px 55px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.wrapper .input-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.input-box .input-field {
+    position: relative;
+    width: 48%;
+    height: 50px;
+    margin: 13px 0;
+}
+
+.input-box .input-field input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 6px;
+    padding: 15px 15px 15px 40px;
+}
+
+.input-box .input-field select {
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: #fff;
+    outline: none;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.input-box .input-field select option {
+    color: black;
+}
+
+.input-box .input-field input::placeholder {
+    color: #fff;
+}
+
+.input-box .input-field i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper label {
+    display: inline-block;
+    font-size: 14.5px;
+    margin: 10px 0 23px;
+}
+
+.wrapper label input {
+    accent-color: #fff;
+    margin-right: 5px;
+}
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}

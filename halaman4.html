@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style4.css" />
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
+        <link rel="stylesheet" href="daftar_buku.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css"
+            integrity="sha512-gRH0EcIcYBFkQTnbpO8k0WlsD20x5VzjhOA1Og8+ZUAhcMUCvd+APD35FJw3GzHAP3e+mP28YcDJxVr745loHw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar1">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="logo.png" id="logo" />Pepustakaan Makaragus</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav justify-content-end" id="nav1">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="halaman2.html">Book</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="halaman3.html">Input Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="halaman4.html">Show Data</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div id="data-peminjam" class="row row-cols-4 g-3" style="margin-top: 5rem"></div>
+        </div>
+        <div class="modal fade" id="modal-update-data" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="update-form">
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" name="nama" class="form-control" id="nama" required />
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" name="idBuku" required>
+                                    <option selected disabled hidden>Pilih Buku</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="noTelp" class="form-label">No Telpon</label>
+                                <input type="number" name="noTelp" class="form-control" id="noTelp" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="tglPeminjaman" class="form-label">Tgl Peminjaman</label>
+                                <input type="date" name="tglPeminjaman" class="form-control" id="tglPeminjaman" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="tglPengembalian" class="form-label">Tgl Pengembalian</label>
+                                <input type="date" name="tglPengembalian" class="form-control" id="tglPengembalian" required />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="update-submit" type="button" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            const endpoint = "https://teknologi-web-backend.vercel.app"
+
+            const getDataPeminjaman = async () => {
+                const response = await fetch(`${endpoint}/peminjaman`)
+                const result = await response.json()
+                return result
+            }
+
+            const formatTgl = (tglString) => {
+                const opsi = {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                }
+                const tgl = new Date(tglString)
+                return tgl.toLocaleDateString("id-ID", opsi)
+            }
+
+            const formatTglValue = (tglString) => {
+                const tgl = new Date(tglString)
+                return tgl.toISOString().split("T")[0]
+            }
+
+            const setDataPeminjaman = async () => {
+                const data = await getDataPeminjaman()
+                const divPeminjam = document.querySelector("#data-peminjam")
+
+                data.data.forEach((peminjam) => {
+                    const col = document.createElement("div")
+                    col.classList.add("col")
+
+                    const card = document.createElement("div")
+                    card.classList.add("card", "h-100")
+
+                    const cardBody = document.createElement("div")
+                    cardBody.classList.add("card-body")
+
+                    const h5 = document.createElement("h5")
+                    h5.classList.add("card-title")
+                    h5.innerText = peminjam["nama_peminjam"]
+
+                    const h6 = document.createElement("h6")
+                    h6.classList.add("card-subtitle", "mb-2", "text-muted")
+                    h6.innerText = `${peminjam.email} (${peminjam["no_telp"]})`
+
+                    const buku = document.createElement("p")
+                    buku.classList.add("card-text", "mb-0")
+                    buku.innerHTML = `<span class="fw-bold">Buku:</span> ${peminjam["nama_buku"]}`
+
+                    const tglPinjam = document.createElement("p")
+                    tglPinjam.classList.add("card-text", "mb-0")
+                    tglPinjam.innerHTML = `<span class="fw-bold">Tgl Peminjaman:</span> ${formatTgl(peminjam["tgl_peminjaman"])}`
+
+                    const tglPengembalian = document.createElement("p")
+                    tglPengembalian.classList.add("card-text", "mb-0")
+                    tglPengembalian.innerHTML = `<span class="fw-bold">Tgl Pengembalian:</span> ${formatTgl(peminjam["tgl_pengembalian"])}`
+
+                    const footer = document.createElement("div")
+                    footer.classList.add("card-footer")
+
+                    const modalUpdateButton = document.createElement("button")
+                    modalUpdateButton.classList.add("btn", "btn-primary", "w-100")
+                    modalUpdateButton.setAttribute("data-bs-toggle", "modal")
+                    modalUpdateButton.setAttribute("data-bs-target", "#modal-update-data")
+                    modalUpdateButton.setAttribute("data-bs-id", peminjam["id_peminjaman"])
+                    modalUpdateButton.innerText = "Update"
+
+                    const deleteButton = document.createElement("button")
+                    deleteButton.classList.add("btn", "btn-danger", "w-100", "mt-1")
+                    deleteButton.innerText = "Remove"
+                    deleteButton.addEventListener("click", async () => {
+                        const response = await fetch(`${endpoint}/peminjaman/${peminjam["id_peminjaman"]}`, {
+                            method: "DELETE",
+                        })
+                        const result = await response.json()
+
+                        if (result.error) {
+                            alert(result.message)
+                            return
+                        }
+
+                        alert(result.message)
+                        window.location.reload()
+                    })
+
+                    cardBody.append(h5, h6, buku, tglPinjam, tglPengembalian)
+                    footer.append(modalUpdateButton, deleteButton)
+                    card.append(cardBody, footer)
+                    col.append(card)
+                    divPeminjam.append(col)
+                })
+            }
+
+            setDataPeminjaman()
+
+            const modalUpdate = document.querySelector("#modal-update-data")
+            modalUpdate.addEventListener("show.bs.modal", async (e) => {
+                const button = e.relatedTarget
+                const id = button.getAttribute("data-bs-id")
+
+                const peminjamResponse = await fetch(`${endpoint}/peminjaman/${id}`)
+                const { data: peminjam } = await peminjamResponse.json()
+
+                const pilihanBukuResponse = await fetch(`${endpoint}/pilihan-buku`)
+                const pilihanBuku = await pilihanBukuResponse.json()
+                const updateForm = document.querySelector("#update-form")
+
+                pilihanBuku.data.forEach((buku) => {
+                    const option = document.createElement("option")
+                    option.setAttribute("value", buku.id_buku)
+                    if (peminjam["id_buku"] === buku.id_buku) option.setAttribute("selected", true)
+                    option.innerText = buku.nama_buku
+
+                    updateForm["idBuku"].append(option)
+                })
+
+                updateForm["nama"].value = peminjam["nama_peminjam"]
+                updateForm["email"].value = peminjam["email"]
+                updateForm["noTelp"].value = peminjam["no_telp"]
+                console.log(formatTglValue(peminjam["tgl_peminjaman"]))
+                updateForm["tglPeminjaman"].value = formatTglValue(peminjam["tgl_peminjaman"])
+                updateForm["tglPengembalian"].value = formatTglValue(peminjam["tgl_pengembalian"])
+
+                document.querySelector("#update-submit").addEventListener("click", async () => {
+                    const data = {
+                        nama: updateForm["nama"].value,
+                        idBuku: updateForm["idBuku"].value,
+                        email: updateForm["email"].value,
+                        noTelp: updateForm["noTelp"].value,
+                        tglPeminjaman: updateForm["tglPeminjaman"].value,
+                        tglPengembalian: updateForm["tglPengembalian"].value,
+                    }
+
+                    const response = await fetch(`${endpoint}/peminjaman/${id}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    })
+
+                    const result = await response.json()
+
+                    if (result.error) {
+                        alert(result.message)
+                        return
+                    }
+
+                    alert(result.message)
+                    window.location.reload()
+                })
+            })
+        </script>
+    </body>
+</html>
